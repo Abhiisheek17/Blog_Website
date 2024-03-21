@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Website</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header class="bg-dark py-3 mb-4">
+        <div class="container">
+            <h1 class="text-white">Welcome to the Blog Website</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <ul class="list-group post-list">
+                    <% posts.forEach(post => { %>
+                        <li class="list-group-item">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h2 class="mb-1"><%= post.title %></h2>
+                                    <p class="mb-0"><%= post.content %></p>
+                                </div>
+                                <div>
+                                    <a href="/edit/<%= post.id %>" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="/delete/<%= post.id %>" class="btn btn-danger btn-sm">Delete</a>
+                                </div>
+                            </div>
+                        </li>
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <h2>Create New Post</h2>
+                <form action="/create" method="POST" class="create-form">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Content:</label>
+                        <textarea id="content" name="content" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
